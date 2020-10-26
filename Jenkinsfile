@@ -18,7 +18,13 @@ pipeline {
                cd ..
             """)
          }
-      }
+         }
+        stage('DB') {
+            steps {
+                echo 'Finished Docker Build'
+            }
+        }
+        }
         stage('Start test app') {
          steps {
             pwsh(script: """
@@ -49,7 +55,7 @@ pipeline {
             """)
          }
       }
-        stage('Goodbye') {
+      stage('Goodbye') {
             steps {
                 echo 'Goodbye World'
             }
