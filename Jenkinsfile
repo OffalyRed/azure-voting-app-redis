@@ -17,13 +17,12 @@ pipeline {
                docker images -a
                cd ..
             """)
-         }
+            }
          }
         stage('DB') {
             steps {
                 echo 'Finished Docker Build'
             }
-        }
         }
         stage('Start test app') {
          steps {
