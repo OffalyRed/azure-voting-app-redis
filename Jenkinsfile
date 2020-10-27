@@ -14,18 +14,18 @@ pipeline {
         }
         stage('Docker Test') {
          steps {
-            pwsh(script: 'docker images -a')
+            powershell(script: 'docker images -a')
             }
         }
         stage('Docker Build') {
          steps {
-            pwsh(script: """
+            powershell(script: """
                cd azure-vote/
                docker build -t offaly/jenkins-pipeline:v1.0 .
                docker images -a
                cd ..
             """)
-            pwsh(script: 'docker images -a')
+            powershell(script: 'docker images -a')
             }
         }
         stage('DB') {
@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Start test app') {
          steps {
-            pwsh(script: """
+            powershell(script: """
                docker-compose up -d
                ./scripts/test_container.ps1
             """)
@@ -51,14 +51,14 @@ pipeline {
       }
       stage('Run Tests') {
          steps {
-            pwsh(script: """
+            powershell(script: """
                pytest ./tests/test_sample.py
             """)
          }
       }
       stage('Stop test app') {
          steps {
-            pwsh(script: """
+            powershell(script: """
                docker-compose down
             """)
          }
