@@ -9,7 +9,7 @@ pipeline {
         }
          stage('Print Test') {
          steps {
-            pwsh(script: 'Write-Output "docker images -a"')
+            powershell(script: 'Write-Output "docker images -a"')
             }
         }
         stage('Docker Test') {
