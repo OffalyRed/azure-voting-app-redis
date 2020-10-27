@@ -7,6 +7,11 @@ pipeline {
                 echo "$GIT_BRANCH"
             }
         }
+         stage('Docker Test') {
+         steps {
+            pwsh(script: 'Write-Output "docker images -a"')
+            }
+        }
         stage('Docker Test') {
          steps {
             pwsh(script: 'docker images -a')
